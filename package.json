@@ -1,6 +1,6 @@
 {
   "name": "vue-popover",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Reusable popover component for Vue",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.babel.js --hot --inline --open",
@@ -22,7 +22,7 @@
     "babel-runtime": "^6.23.0",
     "copy-webpack-plugin": "^4.0.1",
     "cross-env": "3.2.3",
-    "css-loader": "^0.26.4",
+    "css-loader": "^0.27.1",
     "eslint": "^3.17.1",
     "eslint-loader": "^1.6.3",
     "extract-text-webpack-plugin": "^2.1.0",
@@ -34,7 +34,7 @@
     "karma": "^1.5.0",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
-    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.4",
     "karma-spec-reporter": "0.0.30",
     "karma-webpack": "^2.0.2",
     "node-sass": "^4.5.0",
