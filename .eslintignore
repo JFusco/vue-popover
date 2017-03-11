@@ -1,0 +1,4 @@
+/node_modules/
+/dist/
+/dist-components/
+/__tests__/

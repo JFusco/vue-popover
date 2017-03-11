@@ -1,0 +1,177 @@
+{
+	"parser": "vue-eslint-parser",
+	"parserOptions": {
+		"parser": "babel-eslint",
+		"sourceType": "module",
+		"allowImportExportEverywhere": false
+	},
+	"rules": {
+		"eqeqeq": [
+			2,
+			"allow-null"
+		],
+		"no-extra-semi": 2,
+		"semi": [
+			0,
+			"never"
+		],
+		"no-cond-assign": 2,
+		"accessor-pairs": 2,
+		"no-with": 2,
+		"no-sparse-arrays": 2,
+		"vars-on-top": 2,
+		"no-void": 2,
+		"no-undef": 2,
+		"no-caller": 2,
+		"no-new": 2,
+		"yoda": 2,
+		"no-whitespace-before-property": 2,
+		"no-inner-declarations": 2,
+		"no-ex-assign": 2,
+		"no-else-return": 2,
+		"no-dupe-keys": 2,
+		"constructor-super": 2,
+		"no-extra-boolean-cast": 2,
+		"no-obj-calls": 2,
+		"no-empty": 2,
+		"semi-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"keyword-spacing": [
+			"error",
+			{
+				"overrides": {
+					"if": {
+						"after": true
+					},
+					"else": {
+						"before": true,
+						"after": true
+					},
+					"for": {
+						"after": false
+					},
+					"while": {
+						"after": false
+					},
+					"function": {
+						"after": true
+					}
+				}
+			}
+		],
+		"space-before-function-paren": [
+			"error",
+			{
+				"anonymous": "never",
+				"named": "never"
+			}
+		],
+		"comma-dangle": [
+			2,
+			"never"
+		],
+		"comma-style": [
+			2,
+			"last"
+		],
+		"comma-spacing": [
+			"error",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"quotes": [
+			2,
+			"single",
+			"avoid-escape"
+		],
+		"no-trailing-spaces": 2,
+		"no-lonely-if": 0,
+		"eol-last": 2,
+		"no-nested-ternary": 2,
+		"space-in-parens": [
+			2,
+			"never"
+		],
+		"brace-style": [
+			2,
+			"1tbs",
+			{
+				"allowSingleLine": true
+			}
+		],
+		"object-curly-spacing": [
+			2,
+			"always",
+			{
+				"objectsInObjects": true,
+				"arraysInObjects": true
+			}
+		],
+		"computed-property-spacing": [
+			"error",
+			"never"
+		],
+		"block-spacing": [
+			"error",
+			"always"
+		],
+		"one-var": [
+			2,
+			{
+				"let": "always",
+				"const": "never"
+			}
+		],
+		"no-spaced-func": 2,
+		"spaced-comment": 0,
+		"quote-props": [
+			2,
+			"as-needed",
+			{
+				"keywords": true
+			}
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"guard-for-in": 2,
+		"prefer-const": 2,
+		"no-var": 2,
+		"prefer-arrow-callback": 2,
+		"no-const-assign": 2,
+		"arrow-body-style": [
+			2,
+			"always"
+		],
+		"arrow-parens": [
+			2,
+			"as-needed"
+		],
+		"arrow-spacing": [
+			2,
+			{
+				"before": true,
+				"after": true
+			}
+		]
+	},
+	"globals": {
+		"console": true,
+		"alert": true,
+		"document": true,
+		"window": true,
+		"setTimeout": true,
+		"setInterval": true,
+		"clearTimeout": true,
+		"__DEV__": true,
+		"VERSION": true
+	}
+}

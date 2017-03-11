@@ -1,0 +1,7 @@
+{
+	"scripts": {
+		"fileName": "vue-popover",
+		"entry": "Popover",
+		"library": "VuePopover"
+	}
+}

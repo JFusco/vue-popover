@@ -1,0 +1,11 @@
+
+.popover[data-v-cba4a60a] {
+  position: relative;
+}
+.popover__face[data-v-cba4a60a] {
+    cursor: pointer;
+}
+.popover__container[data-v-cba4a60a] {
+    position: absolute;
+    z-index: 100;
+}
