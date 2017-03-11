@@ -1,6 +1,6 @@
 {
   "name": "vue-popover",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reusable popover component for Vue",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.babel.js --hot --inline --open",
