@@ -6,4 +6,4 @@ before_install:
   - npm install -g eslint
   - npm install -g babel-eslint
 script:
-    - "npm run lint && npm test"
+    - "npm test"
