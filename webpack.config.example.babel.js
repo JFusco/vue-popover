@@ -29,7 +29,8 @@ module.exports =  {
 		}),
 		new CopyWebpackPlugin([
 			{ from: './src/example/index.html', to: './' },
-			{ from: './src/example/index.css', to: './' }
+			{ from: './src/example/index.css', to: './' },
+			{ from: './coverage', to: './coverage' }
 		]),
 		new webpack.DefinePlugin({
 			'__DEV__': process.env.NODE_ENV === 'development',

@@ -1,13 +1,13 @@
 {
   "name": "vue-popover",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Reusable popover component for Vue",
   "scripts": {
+	"test": "karma start --single-run --no-auto-watch",
     "start": "cross-env NODE_ENV=development webpack-dev-server --config ./webpack.config.babel.js --hot --inline --open",
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.babel.js --display-chunks --display-modules --progress --colors",
-    "start-docs": "webpack-dev-server --config ./webpack.config.example.babel.js --hot --inline --open",
-    "build-docs": "webpack --config ./webpack.config.example.babel.js",
-    "test": "karma start --single-run --no-auto-watch"
+	"start-docs": "webpack-dev-server --config ./webpack.config.example.babel.js --hot --inline --open",
+	"build-docs": "npm run test && webpack --config ./webpack.config.example.babel.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack.config.babel.js --display-chunks --display-modules --progress --colors"
   },
   "peerDependencies": {
     "vue": "^2.2.2"
