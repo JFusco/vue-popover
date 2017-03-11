@@ -11,7 +11,7 @@
 > Reusable popover component for Vue
 
 ## Demo ##
-__Coming soon__
+https://jfusco.github.io/vue-popover
 
 ## Getting Started ##
 
