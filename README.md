@@ -126,11 +126,11 @@ An `function` triggered any time the instance of the popover is closed
 <template>
 	<div>
 		<popover name="example">
-			<div name="face">
+			<div slot="face">
 				<button>popover face</button>
 			</div>
 
-			<div name="content">
+			<div slot="content">
 				<p>Some custom content for popover</p>
 			</div>
 		</popover>
