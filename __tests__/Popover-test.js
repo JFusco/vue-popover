@@ -239,3 +239,96 @@ describe('Popover - custom content', () => {
 		});
 	});
 });
+
+describe('Popover - multiple', () => {
+	let app,
+		openSpyOne,
+		closeSpyOne,
+		openSpyTwo,
+		closeSpyTwo;
+
+	beforeEach(() => {
+		openSpyOne = sinon.spy();
+		closeSpyOne = sinon.spy();
+		openSpyTwo = sinon.spy();
+		closeSpyTwo = sinon.spy();
+
+		app = new Vue({
+			template: `<div>
+							<popover
+									name="test-one"
+									v-on:popover:open="onPopoverOneOpen"
+									v-on:popover:close="onPopoverOneClose">
+							</popover>
+							<popover
+									name="test-two"
+									v-on:popover:open="onPopoverTwoOpen"
+									v-on:popover:close="onPopoverTwoClose">
+							</popover>
+						</div>`,
+			components: {
+				Popover
+			},
+			methods: {
+				onPopoverOneOpen: openSpyOne,
+				onPopoverOneClose: closeSpyOne,
+				onPopoverTwoOpen: openSpyTwo,
+				onPopoverTwoClose: closeSpyTwo
+			}
+		}).$mount();
+	});
+
+	afterEach(() => {
+		app.$destroy();
+
+		app = null;
+		openSpyOne = null;
+		closeSpyOne = null;
+		openSpyTwo = null;
+		closeSpyTwo = null;
+	});
+
+	it('should render multiple popovers', () => {
+		const popovers = app.$el.querySelectorAll('.popover');
+
+		expect(popovers.length).toEqual(2);
+		expect(popovers[0].querySelector('.popover__face').getAttribute('aria-owns')).toBe('popover-test-one');
+		expect(popovers[1].querySelector('.popover__face').getAttribute('aria-owns')).toBe('popover-test-two');
+	});
+
+	it('should close one when another is open', done => {
+		const popoverOne = app.$el.querySelectorAll('.popover')[0];
+		const popoverTwo = app.$el.querySelectorAll('.popover')[1];
+
+		const faceOne = popoverOne.querySelector('.popover__face');
+		const faceTwo = popoverTwo.querySelector('.popover__face');
+
+		faceOne.click();
+
+		Vue.nextTick(() => {
+			const popoverContainerOne = popoverOne.querySelector('.popover__container');
+			const popoverContainerTwo = popoverTwo.querySelector('.popover__container');
+			const openClass = (` ${popoverOne.className} `).replace(/[\n\t]/g, ' ').indexOf('open') > -1;
+
+			expect(openClass).toBe(true);
+			expect(popoverContainerOne).not.toBeNull();
+			expect(popoverContainerTwo).toBeNull();
+		});
+
+		Vue.nextTick(() => {
+			faceTwo.click();
+		});
+
+		setTimeout(() => {
+			const popoverContainerOne = popoverOne.querySelector('.popover__container');
+			const popoverContainerTwo = popoverTwo.querySelector('.popover__container');
+			const openClass = (` ${popoverTwo.className} `).replace(/[\n\t]/g, ' ').indexOf('open') > -1;
+
+			expect(openClass).toBe(true);
+			expect(popoverContainerOne).toBeNull();
+			expect(popoverContainerTwo).not.toBeNull();
+
+			done();
+		}, 1000);
+	});
+});

@@ -47,14 +47,13 @@
 
 				const length = popovers.length
 
-				if (popovers.length > 1) {
+				if (length > 1) {
 					for(let i = 0; i < length; i++) {
 						const popover = popovers[i]
 
 						if (popover.isOpen){
 							popover.isOpen = false
 
-							console.log('2');
 							this.$emit('popover:close')
 						}
 					}
