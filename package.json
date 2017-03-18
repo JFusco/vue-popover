@@ -1,6 +1,6 @@
 {
   "name": "vue-popover",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Reusable popover component for Vue",
   "main": "dist/vue-popover.js",
   "license": "MIT",
