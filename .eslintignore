@@ -1,4 +1,5 @@
 /node_modules/
 /dist/
-/dist-components/
+/docs/
+/coverage/
 /__tests__/

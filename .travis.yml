@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - "6"
+  - "7"
 before_install:
-  - npm install -g gulp
   - npm install -g eslint
-  - npm install -g babel-eslint
 script:
-    - "npm test"
+  - "npm test"
+after_success:
+  - "npm publish"

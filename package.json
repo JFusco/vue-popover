@@ -8,19 +8,22 @@
     "type": "git",
     "url": "https://github.com/JFusco/vue-popover"
   },
+  "engines": {
+    "node": ">=7.0.0"
+  },
   "author": {
     "name": "Joe Fusco",
     "email": "jfusco311@gmail.com"
   },
   "scripts": {
-    "preversion": "npm test",
     "version": "npm run build && git add .",
     "postversion": "git push origin master --tags",
+    "lint": "eslint --fix --color --debug --ignore-path .eslintignore ./src/component/js/*",
     "test": "karma start --single-run --no-auto-watch",
     "start": "cross-env NODE_ENV=development webpack-dev-server --hot --inline --open",
     "start-docs": "webpack-dev-server --config ./webpack.config.example.babel.js --hot --inline --open",
     "build-docs": "npm run test && webpack --config ./webpack.config.example.babel.js --progress --colors",
-    "build": "cross-env NODE_ENV=production webpack --display-chunks --display-modules --progress --colors && npm run build-docs"
+    "build": "npm run lint && cross-env NODE_ENV=production webpack --display-chunks --display-modules --progress --colors && npm run build-docs"
   },
   "peerDependencies": {
     "vue": "^2.2.4"
@@ -39,6 +42,7 @@
     "css-loader": "^0.27.3",
     "eslint": "^3.18.0",
     "eslint-loader": "^1.6.3",
+    "eslint-plugin-vue": "^2.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.0",
     "isparta-loader": "^2.0.0",
