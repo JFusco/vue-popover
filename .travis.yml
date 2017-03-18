@@ -5,5 +5,4 @@ before_install:
   - npm install -g eslint
 script:
   - "npm test"
-after_success:
-  - "npm publish"
+after_success: "./travis-npm-publish"
