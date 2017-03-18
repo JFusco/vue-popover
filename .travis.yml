@@ -5,4 +5,9 @@ before_install:
   - npm install -g eslint
 script:
   - "npm test"
-after_success: "./travis-npm-publish"
+deploy:
+  provider: npm
+  email: "jfusco311@gmail.com"
+  api_key: "5987c9ee-ecdc-4642-af28-cf0222230457"
+  on:
+  	tags: true
