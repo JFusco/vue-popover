@@ -1,10 +1,11 @@
 language: node_js
-node_js: "7"
+node_js: '7'
 before_install: npm install -g eslint
-script: "npm test"
+script: npm test
 deploy:
   provider: npm
-  email: "jfusco311@gmail.com"
-  api_key: "5987c9ee-ecdc-4642-af28-cf0222230457"
+  email: jfusco311@gmail.com
+  api_key:
+    secure: P9eHqvCErBBvT7hQqRUJr9+GJU5i0vJ+ca8fqwmFgyPXO7zXe893/+Upl0zuWbpHZHxDiqst5oufz6oO/liq0AceXbbKlERAnaxWSsDZHJBNn0VKOQJOAxo+f5/inXNuYhw9hlB7Teea+9VzkFYUVRWKOqcNUS8YypqrTISQJmpE1/shAnecAZksdvYiTMjzaBH0bN4x/ryrusNJ/L6SeD1GH6pXJQWg+JipNFaoebIlOntuDQgULTojP5fWUVjw0TyvDkhQdU4fWxdCZW6tJHgtDpqOgSS8YYMuu30K17PhnflrTa20nT5eEvfR7dFmEkIx0N9rptYpXOFpKxzH+ibFBXuSZBBJLgO0r6De0APReipOdVt8ATkwL6i5pae6u4bl3b6uZ5wjEszIxYMfukTL6msdDQ45IMNm5oi10xXlX5uzbuD7endpISb+dNbaHh5CMcK3pLLz+SfEy8tPFUVnagHieci179zOQGhaxugR1M12CHGXiBZG1QshR2YpKp/NeWXjImMp5T0ODRQHRWFaVX6USLMFzOhmoMyQ7yIl5Y1cQKrn4Devzc7n7jcobCmtes92T1S8W2pID3mt43QmfQO2k8Sx6lQgEDm2DVbpFKy+9oY81aQiR/7AKV4WGXIucnsMu4+Ak3X+nqh7wuPNnSB7uGkWEQ/0qA+dHQI=
   on:
     tags: true
