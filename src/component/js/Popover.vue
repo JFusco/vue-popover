@@ -1,8 +1,8 @@
 <template>
-	<div class="popover" v-bind:class="{ open: isOpen }">
+	<div class="popover" v-bind:class="{ open: isOpen, [name]: true }">
 		<div class="popover__face" :aria-owns="id" v-on:click="onPopoverToggle">
-			<slot name="face">
-				<div>popover</div>
+			<slot name="face" >
+				<a href="#">popover</a>
 			</slot>
 		</div>
 
@@ -97,19 +97,16 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 	@import '~styles/variables';
 
 	.popover {
 		position: relative;
 
-		&__face {
-			cursor: pointer;
-		}
-
 		&__container {
 			position: absolute;
 			z-index: $popover-z-index;
+			left: 0;
 		}
 	}
 </style>

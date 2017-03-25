@@ -30,6 +30,12 @@ describe('Popover', () => {
 		expect(defaultData.isOpen).toBe(false);
 	});
 
+	it('should test class name of component', () => {
+		const hasClass = (` ${app.$el.querySelector('.popover').className} `).replace(/[\n\t]/g, ' ').indexOf('test') > -1;
+
+		expect(hasClass).toBe(true);
+	});
+
 	it('should set a unique name', () => {
 		const id = app.$el.querySelector('.popover__face').getAttribute('aria-owns');
 
@@ -46,7 +52,7 @@ describe('Popover', () => {
 		const face = app.$el.querySelector('.popover__face');
 
 		expect(face.nodeName).toBe('DIV');
-		expect(face.querySelector('div').textContent).toBe('popover');
+		expect(face.querySelector('a').textContent).toBe('popover');
 	});
 });
 

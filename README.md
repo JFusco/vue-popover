@@ -8,7 +8,7 @@
 [![MIT][mit-image]][mit-url]
 [![npm][npm-version-image]][npm-url]
 
-> Reusable popover component for Vue
+> Reusable popover component for Vue. This is purely functional, it's a completely "naked" and blank canvas component. There are no styles for this component except a z-index, which you can override.
 
 ## Demo ##
 https://jfusco.github.io/vue-popover
