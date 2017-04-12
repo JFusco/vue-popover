@@ -6,7 +6,7 @@
 			</slot>
 		</div>
 
-		<div class="popover__container" :id="id" v-if="isOpen">
+		<div class="popover__container" :id="id" v-if="isOpen" v-on:click="onPopoverContentClick">
 			<slot name="content"></slot>
 		</div>
 	</div>
@@ -24,6 +24,11 @@
 			name: {
 				type: String,
 				required: true
+			},
+			closeOnContentClick: {
+				'default': true,
+				type: Boolean,
+				required: false
 			}
 		},
 
@@ -70,6 +75,16 @@
 				this.isOpen = false
 
 				this.$emit('popover:close')
+			},
+
+			onPopoverContentClick(e){
+				e.stopPropagation()
+
+				if (this.closeOnContentClick) {
+					this.isOpen = false
+
+					this.$emit('popover:close')
+				}
 			},
 
 			removeDocumentEvent(){
