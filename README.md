@@ -138,17 +138,37 @@ An `function` triggered any time the instance of the popover is closed
 </template>
 ```
 
+<a name="closeOnContentClick"></a>
+##### closeOnContentClick ~ optional
+Set to `false` if you don't want the popover to close if you click its contents. Useful if the popover contains elements you interact with (e.g. buttons and textboxes). This defaults to `true` when not set.
+```js
+<template>
+	<div>
+		<popover name="example" :closeOnContentClick="false">
+			<div slot="face">
+				<button>popover face</button>
+			</div>
+	
+			<div slot="content">
+				<button>Some button</button>
+				<input type="text">
+			</div>
+		</popover>
+	</div>
+</template>
+```
+
 ## Styling
 #### Installation
 Import the main SCSS file in to your application SCSS files
-```scss
+​```scss
 @import "node_modules/vue-popover/src/component/scss/styles.scss";
 ```
 
 There are a few variables set to `!default` that can be overriden. If you need to change it more just override the actual styles.
 
 **Any overriden variables needs to go above the `@import` statement to take effect**
-```scss
+​```scss
 //-- Global UI
 $popover-z-index
 ```

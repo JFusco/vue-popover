@@ -246,6 +246,58 @@ describe('Popover - custom content', () => {
 	});
 });
 
+describe('Popover - closeOnContentClick(true)', () => {
+	let app,
+		closeSpy;
+
+	beforeEach(() => {
+		closeSpy = sinon.spy();
+
+		app = new Vue({
+			template: `<div>
+							<popover name="test"
+								:closeOnContentClick="false"
+								v-on:popover:close="onPopoverClose">
+								<div slot="content">
+									<p>test some custom content</p>
+								</div>
+							</popover>
+						</div>`,
+			components: {
+				Popover
+			},
+			methods: {
+				onPopoverClose: closeSpy
+			}
+		}).$mount();
+	});
+
+	afterEach(() => {
+		app.$destroy();
+
+		app = null;
+		closeSpy = null;
+	});
+
+	it('should not trigger "popover:close" event when clicked inside', done => {
+		const face = app.$el.querySelector('.popover__face');
+		let content = null;
+
+		face.click();
+
+		Vue.nextTick(() => {
+			content = app.$el.querySelector('.popover__container');
+		});
+
+		Vue.nextTick(() => {
+			content.click();
+			expect(closeSpy.calledOnce).toBe(false);
+
+			done();
+		});
+	});
+});
+
 describe('Popover - multiple', () => {
 	let app,
 		openSpyOne,
