@@ -34,7 +34,7 @@ Simple implementation of popover. See [options available](#options) below.
 				</ul>
 			</div>
 		</popover>
-	<div>
+	</div>
 </template>
 
 <script type="text/babel">
@@ -148,7 +148,7 @@ Set to `false` if you don't want the popover to close if you click its contents.
 			<div slot="face">
 				<button>popover face</button>
 			</div>
-	
+
 			<div slot="content">
 				<button>Some button</button>
 				<input type="text">
