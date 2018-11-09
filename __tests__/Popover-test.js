@@ -246,6 +246,79 @@ describe('Popover - custom content', () => {
 	});
 });
 
+describe('Popover - slim', () => {
+  it('should render wrapperless', done => {
+    let app = new Vue({
+      template: `<popover slim name="test">
+                <a
+                  href="#"
+                  slot="face"
+                  slot-scope="s"
+                  @click="s.onPopoverToggle">slim component</a>
+								<p slot="content">test some custom content</p>
+							</popover>`,
+      components: {
+        Popover
+      }
+    }).$mount();
+
+    const face = app.$el.querySelector('.popover__face');
+    expect(face).toBeNull();
+
+    expect(app.$el.tagName).toBe('A');
+    app.$el.click();
+
+    Vue.nextTick(() => {
+      const popoverContainer = app.$el.querySelector('.popover__container');
+      const content = popoverContainer.querySelector('p');
+
+      expect(popoverContainer).not.toBeUndefined();
+      expect(popoverContainer.parentElement).toBe(app.$el);
+      expect(content.textContent).toBe('test some custom content');
+
+      app.$destroy();
+
+      done();
+    });
+  });
+
+  // This has a slightly different flow
+  it('should render wrapperless with a face component', done => {
+    let app = new Vue({
+      template: `<popover slim name="test">
+                <Face
+                  slot="face"
+                  slot-scope="s"
+                  @click.native="s.onPopoverToggle"/>
+								<p slot="content">test some custom content</p>
+							</popover>`,
+      components: {
+        Popover,
+        Face: { template: '<a href="#">slim component</a>' }
+      }
+    }).$mount();
+
+    const face = app.$el.querySelector('.popover__face');
+    expect(face).toBeNull();
+
+    expect(app.$el.tagName).toBe('A');
+    app.$el.click();
+
+    Vue.nextTick(() => {
+      const popoverContainer = app.$el.querySelector('.popover__container');
+      const content = popoverContainer.querySelector('p');
+
+      expect(popoverContainer).not.toBeUndefined();
+      expect(popoverContainer.parentElement).toBe(app.$el);
+      expect(content.textContent).toBe('test some custom content');
+
+      app.$destroy();
+
+      done();
+    });
+  });
+});
+
 describe('Popover - closeOnContentClick(true)', () => {
 	let app,
 		closeSpy;

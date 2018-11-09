@@ -1,6 +1,7 @@
 
-.default .popover__container ul[data-v-5dda453c],
-.custom-face .popover__container ul[data-v-5dda453c] {
+.default .popover__container ul[data-v-5582d693],
+.custom-face .popover__container ul[data-v-5582d693],
+.slim-face .popover__container ul[data-v-5582d693] {
   margin: 0;
   padding: 5px 0;
   list-style: none;
@@ -9,17 +10,22 @@
   -moz-box-shadow: 0 2px 11px -1px rgba(0, 0, 0, 0.51);
   box-shadow: 0 2px 11px -1px rgba(0, 0, 0, 0.51);
 }
-.default .popover__container a[data-v-5dda453c],
-.custom-face .popover__container a[data-v-5dda453c] {
+.default .popover__container a[data-v-5582d693],
+.custom-face .popover__container a[data-v-5582d693],
+.slim-face .popover__container a[data-v-5582d693] {
   display: block;
   text-decoration: none;
   padding: 8px 10px;
   color: black;
   transition: background 0.3s ease;
 }
-.default .popover__container a[data-v-5dda453c]:hover,
-  .custom-face .popover__container a[data-v-5dda453c]:hover {
+.default .popover__container a[data-v-5582d693]:hover,
+  .custom-face .popover__container a[data-v-5582d693]:hover,
+  .slim-face .popover__container a[data-v-5582d693]:hover {
     background: lightgray;
+}
+.slim-face[data-v-5582d693] {
+  position: relative;
 }
 
 .popover {

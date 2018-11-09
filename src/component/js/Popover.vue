@@ -1,21 +1,34 @@
 <template>
-	<div class="popover" v-bind:class="{ open: isOpen, [name]: true }">
-		<div class="popover__face" :aria-owns="id" v-on:click="onPopoverToggle">
-			<slot name="face" >
-				<a href="#">popover</a>
-			</slot>
-		</div>
-
-		<div class="popover__container" :id="id" v-if="isOpen" v-on:click="onPopoverContentClick">
-			<slot name="content"></slot>
-		</div>
-	</div>
+	<popover-wrapper v-if="!slim"
+		v-bind="{ id, isOpen, name }"
+		@togglePopover="onPopoverToggle">
+		<template slot="face">
+			<slot name="face"/>
+		</template>
+		<template slot="content">
+			<div class="popover__container" :id="id" v-on:click="onPopoverContentClick">
+				<slot name="content"></slot>
+			</div>
+		</template>
+	</popover-wrapper>
+	<popover-wrapperless v-else v-bind="{ isOpen }">
+		<template slot="face">
+			<slot name="face" v-bind="{ id, isOpen, name, onPopoverToggle }"/>
+		</template>
+		<template slot="content">
+			<div class="popover__container" :id="id" v-on:click="onPopoverContentClick">
+				<slot name="content"></slot>
+			</div>
+		</template>
+	</popover-wrapperless>
 </template>
 
 <script type="text/babel">
 	'use strict'
 
 	import Vue from 'vue'
+	import PopoverWrapper from './PopoverWrapper.vue'
+	import PopoverWrapperless from './PopoverWrapperless.js'
 
 	const popovers = []
 
@@ -29,7 +42,16 @@
 				'default': true,
 				type: Boolean,
 				required: false
+			},
+			slim: {
+				type: Boolean,
+				'default': false
 			}
+		},
+
+		components: {
+			PopoverWrapper,
+    		PopoverWrapperless
 		},
 
 		data(){
