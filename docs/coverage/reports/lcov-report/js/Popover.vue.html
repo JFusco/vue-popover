@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.29% </span>
+        <span class="strong">94.87% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/35</span>
+        <span class='fraction'>37/39</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">91.67% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>9/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.55% </span>
+        <span class="strong">93.94% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>29/31</span>
+        <span class='fraction'>31/33</span>
       </div>
       <div class='fl pad1y'>
         <span class="strong">1 branch</span>
@@ -160,7 +160,40 @@
 111
 112
 113
-114</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -178,8 +211,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -287,104 +331,126 @@
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 &nbsp;
-'use strict'
+	'use strict'
 &nbsp;
-import Vue from 'vue'
+	import Vue from 'vue'
+  import PopoverWrapper from './PopoverWrapper.vue'
+  import PopoverWrapperless from './PopoverWrapperless.js'
 &nbsp;
-const popovers = []
+	const popovers = []
 &nbsp;
-export default {
-	props: {
-		name: {
-			type: String,
-			required: true
+	export default {
+		props: {
+			name: {
+				type: String,
+				required: true
+			},
+			closeOnContentClick: {
+				'default': true,
+				type: Boolean,
+				required: false
+			},
+      slim: {
+			  type: Boolean,
+        'default': false
+      }
 		},
-		closeOnContentClick: {
-			'default': true,
-			type: Boolean,
-			required: false
-		}
-	},
 &nbsp;
-	data(){
-		return {
-			isOpen: false
-		}
-	},
+    components: {
+		  PopoverWrapper,
+      PopoverWrapperless
+    },
 &nbsp;
-	methods: {
-		onPopoverToggle(e) {
-			e.stopPropagation()
+		data(){
+			return {
+				isOpen: false
+			}
+		},
 &nbsp;
-			if (this.isOpen){
+		methods: {
+			onPopoverToggle(e) {
+				e.stopPropagation()
+&nbsp;
+				if (this.isOpen){
+					this.isOpen = false
+&nbsp;
+					this.$emit('popover:close')
+&nbsp;
+					return
+				}
+&nbsp;
+				const length = popovers.length
+&nbsp;
+				if (length &gt; 1) {
+					for(let i = 0; i &lt; length; i++) {
+						const popover = popovers[i]
+&nbsp;
+						if (popover.isOpen){
+							popover.isOpen = false
+&nbsp;
+							this.$emit('popover:close')
+						}
+					}
+				}
+&nbsp;
+				this.isOpen = true
+&nbsp;
+				document.documentElement.addEventListener('click', this.onDocumentClick, false)
+&nbsp;
+				this.$emit('popover:open')
+			},
+&nbsp;
+			onDocumentClick(){
 				this.isOpen = false
 &nbsp;
 				this.$emit('popover:close')
+			},
 &nbsp;
-				return
-			}
+			onPopoverContentClick(e){
+				e.stopPropagation()
 &nbsp;
-			const length = popovers.length
+				<span class="missing-if-branch" title="if path not taken" >I</span>if (this.closeOnContentClick) {
+<span class="cstat-no" title="statement not covered" >					t</span>his.isOpen = false
 &nbsp;
-			if (length &gt; 1) {
-				for(let i = 0; i &lt; length; i++) {
-					const popover = popovers[i]
-&nbsp;
-					if (popover.isOpen){
-						popover.isOpen = false
-&nbsp;
-						this.$emit('popover:close')
-					}
+<span class="cstat-no" title="statement not covered" >					t</span>his.$emit('popover:close')
 				}
-			}
+			},
 &nbsp;
-			this.isOpen = true
-&nbsp;
-			document.documentElement.addEventListener('click', this.onDocumentClick, false)
-&nbsp;
-			this.$emit('popover:open')
-		},
-&nbsp;
-		onDocumentClick(){
-			this.isOpen = false
-&nbsp;
-			this.$emit('popover:close')
-		},
-&nbsp;
-		onPopoverContentClick(e){
-			e.stopPropagation()
-&nbsp;
-			<span class="missing-if-branch" title="if path not taken" >I</span>if (this.closeOnContentClick) {
-<span class="cstat-no" title="statement not covered" >				t</span>his.isOpen = false
-&nbsp;
-<span class="cstat-no" title="statement not covered" >				t</span>his.$emit('popover:close')
+			removeDocumentEvent(){
+				document.documentElement.removeEventListener('click', this.onDocumentClick, false)
 			}
 		},
 &nbsp;
-		removeDocumentEvent(){
-			document.documentElement.removeEventListener('click', this.onDocumentClick, false)
+		computed: {
+			id(){
+				return `popover-${this.name}`
+			}
+		},
+&nbsp;
+		mounted(){
+			popovers.push(this)
+&nbsp;
+			this.$on('popover:close', this.removeDocumentEvent)
+		},
+&nbsp;
+		beforeDestroy(){
+			this.removeDocumentEvent()
+&nbsp;
+			popovers.length = 0
 		}
-	},
-&nbsp;
-	computed: {
-		id(){
-			return `popover-${this.name}`
-		}
-	},
-&nbsp;
-	mounted(){
-		popovers.push(this)
-&nbsp;
-		this.$on('popover:close', this.removeDocumentEvent)
-	},
-&nbsp;
-	beforeDestroy(){
-		this.removeDocumentEvent()
-&nbsp;
-		popovers.length = 0
 	}
-}
 &nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -392,7 +458,7 @@ export default {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Jan 09 2018 14:57:32 GMT-0500 (EST)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Nov 09 2018 11:04:09 GMT-0300 (-03)
 </div>
 </div>
 <script src="../prettify.js"></script>

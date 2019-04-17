@@ -59,6 +59,63 @@
     &lt;/div&gt;
 &lt;/popover&gt;</pre>
 		</div>
+
+    <div className="example">
+      <h2>Slim component</h2>
+      <p>Here the component renders without any wrapper elements around the "face" slot. As seen below,
+        this allows for inlining of popovers. The slot is now scoped so the popover toggle can be triggered.
+        When the content renders, it will do so inside the root face element.</p>
+
+      <popover slim name="slim-face">
+        <a
+          href="#"
+          class="slim-face"
+          @click.prevent="onPopoverToggle"
+          slot="face"
+          slot-scope="{ onPopoverToggle }">
+          slim popover</a>
+        <div slot="content">
+          <ul>
+            <li><a href="https://www.npmjs.com/~jfusco" target="_blank">npmjs.com</a></li>
+            <li><a href="https://github.com/JFusco" target="_blank">github.com</a></li>
+          </ul>
+        </div>
+      </popover>
+      <span>&nbsp;|&nbsp;</span>
+      <popover slim name="slim-face-2">
+        <a
+          href="#"
+          class="slim-face"
+          @click.prevent="onPopoverToggle"
+          slot="face"
+          slot-scope="{ onPopoverToggle }">
+          slim popover</a>
+        <div slot="content">
+          <ul>
+            <li><a href="https://www.npmjs.com/~jfusco" target="_blank">npmjs.com</a></li>
+            <li><a href="https://github.com/JFusco" target="_blank">github.com</a></li>
+          </ul>
+        </div>
+      </popover>
+
+
+      <pre>&lt;popover slim name="slim-face"&gt;
+    &lt;a
+      href="#"
+      class="slim-face"
+      @click.prevent="onPopoverToggle"
+      slot="face"
+      slot-scope="{ onPopoverToggle }"&gt;
+      slim popover
+    &lt;/a&gt;
+    &lt;div slot="content"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="https://www.npmjs.com/~jfusco" target="_blank">npmjs.com&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="https://github.com/JFusco" target="_blank">github.com&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/popover&gt;</pre>
+    </div>
 	</div>
 </template>
 
@@ -74,31 +131,37 @@
 
 <style lang="scss" scoped>
 	.default,
-	.custom-face {
-		.popover {
-			&__container {
-				ul {
-					margin: 0;
-					padding: 5px 0;
-					list-style: none;
-					background: white;
-					-webkit-box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
-					-moz-box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
-					box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
-				}
+	.custom-face,
+  .slim-face {
+    .popover__container {
+      ul {
+        margin: 0;
+        padding: 5px 0;
+        list-style: none;
+        background: white;
+        -webkit-box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
+        -moz-box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
+        box-shadow: 0 2px 11px -1px rgba(0,0,0,0.51);
+      }
 
-	            a {
-		            display: block;
-		            text-decoration: none;
-		            padding: 8px 10px;
-	                color: black;
-	                transition: background 0.3s ease;
+      a {
+        display: block;
+        text-decoration: none;
+        padding: 8px 10px;
+        color: black;
+        transition: background 0.3s ease;
 
-		            &:hover {
-						background: lightgray;
-		             }
-	            }
-			}
+        &:hover {
+          background: lightgray;
+        }
+      }
 		}
 	}
+
+  // To have the absolutely positioned content appear beside
+  // the face, it should be positioned, relative works well to follow
+  // document flow yet position to element.
+  .slim-face {
+    position: relative;
+  }
 </style>

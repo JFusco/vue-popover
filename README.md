@@ -54,6 +54,8 @@ Simple implementation of popover. See [options available](#options) below.
 * **[`popover:open`](#popoverOpen)**
 * **[`popover:close`](#popoverClose)**
 * **[`slots`](#slots)**
+* **[`closeOnContentClick`](#closeOnContentClick)**
+* **[`slim`](#slim)**
 
 <a name="name"></a>
 ##### name ~ required
@@ -152,6 +154,36 @@ Set to `false` if you don't want the popover to close if you click its contents.
 			<div slot="content">
 				<button>Some button</button>
 				<input type="text">
+			</div>
+		</popover>
+	</div>
+</template>
+```
+
+<a name="slim"></a>
+##### slim ~ optional
+Defaults to `false`, if enabled, it means the "face" slot is required and
+the rendered component will be wrapper-less, there will be no further elements
+around the "face" slot. To do this the `onPopoverToggle` method is passed to
+the slot (with `slim` the slot becomes scoped).
+
+*Important: the content slot will render inside the root element of the face slot.
+As the content slot still has a wrapper and will appear absolutely positioned, the
+face slot will probably need to be positioned, `relative` will work well for most
+use cases.*
+
+```js
+<template>
+	<div>
+		<popover name="example" slim>
+			<a
+				slot="face"
+				slot-scope="{ onPopoverToggle }"
+				href="#"
+				@click.prevent="onPopoverToggle">
+				slim popover</a>
+			<div slot="content">
+				<p>Some custom content for popover</p>
 			</div>
 		</popover>
 	</div>
